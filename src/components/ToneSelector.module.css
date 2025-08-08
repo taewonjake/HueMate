@@ -1,0 +1,21 @@
+.toneSelector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.toneButton {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.active {
+  background-color: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}

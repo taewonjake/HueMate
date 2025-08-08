@@ -1,0 +1,16 @@
+.recommendation {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.colorRow {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}

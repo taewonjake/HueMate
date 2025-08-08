@@ -1,0 +1,25 @@
+.colorInput {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.colorLabel {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.colorPicker {
+  width: 60px;
+  height: 60px;
+  border: none;
+  cursor: pointer;
+}
+
+.colorCode {
+  margin-top: 0.5rem;
+  font-family: monospace;
+  font-size: 1rem;
+  color: #444;
+}

@@ -1,0 +1,89 @@
+.multiInput {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.colorRow {
+  display: grid;
+  grid-template-columns: 44px minmax(120px, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.colorPicker {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.colorPicker:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.colorCode {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  color: #374151;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* 공통 버튼 토큰 */
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: transform .02s ease, opacity .15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.addBtn {
+  composes: btn;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.removeBtn {
+  composes: btn;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.addFromImageBtn {
+  composes: btn;
+  background: #444cf7;
+  color: #fff;
+}
+
+.addFromImageBtn:hover {
+  opacity: 0.92;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 480px) {
+  .colorRow {
+    grid-template-columns: 40px 1fr auto;
+    gap: 10px;
+  }
+  .colorCode {
+    font-size: 13px;
+  }
+}

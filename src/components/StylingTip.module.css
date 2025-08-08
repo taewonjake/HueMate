@@ -1,0 +1,18 @@
+.stylingTip {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.stylingTip h4 {
+  margin-bottom: 0.25rem;
+}
+
+.stylingButton {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
+  background-color: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

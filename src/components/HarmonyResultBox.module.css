@@ -1,0 +1,18 @@
+.resultBox {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.tip {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #666;
+}
