@@ -1,40 +1,21 @@
-import React, { useState } from "react";
-import HeroSection from "./components/HeroSection";
-import ColorInput from "./components/ColorInput";
-import ToneSelector from "./components/ToneSelector";
-import ColorRecommendation from "./components/ColorRecommendation";
-import ImageUpload from "./components/ImageUpload";
-import HarmonyChecker from "./components/HarmonyChecker";
-import RandomPalettes from "./components/RandomPalettes";
-import Footer from "./components/Footer";
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Recommend from "./pages/Recommend";
+import Harmony from "./pages/Harmony";
+import RandomPalette from "./pages/RandomPalette";
 import "./index.css";
 
-function App() {
-  const [baseColor, setBaseColor] = useState("#D4A373");
-  const [toneType, setToneType] = useState("analogic"); // default: 유사색 조합
-
+export default function App() {
   return (
-    <div className="App">
-      <HeroSection />
-
-      <section style={{ padding: "40px 20px" }}>
-        <ColorInput baseColor={baseColor} setBaseColor={setBaseColor} />
-        <ImageUpload setBaseColor={setBaseColor} />
-        <ToneSelector toneType={toneType} setToneType={setToneType} />
-        <ColorRecommendation baseColor={baseColor} toneType={toneType} />
-      </section>
-
-      <section style={{ padding: "40px 20px", backgroundColor: "#f8f8f8" }}>
-        <HarmonyChecker />
-      </section>
-
-      <section style={{ padding: "40px 20px" }}>
-        <RandomPalettes />
-      </section>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recommend" element={<Recommend />} />
+        <Route path="/harmony" element={<Harmony />} />
+        <Route path="/random" element={<RandomPalette />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

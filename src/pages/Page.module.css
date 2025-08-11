@@ -1,0 +1,11 @@
+.page{padding:20px;max-width:1080px;margin:0 auto}
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.back{text-decoration:none;color:#6b7280;font-size:18px}
+.titleRow{display:flex;align-items:center;gap:8px;color:#374151;font-weight:700}
+.titleIcon{width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
+.card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:18px;margin-bottom:16px}
+.btnRow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:none;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:600}
+.btnPrimary{background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff}
+.btnBlue{background:linear-gradient(135deg,#60a5fa,#3b82f6);color:#fff}
+.btnGhost{background:#f3f4f6;color:#111827}

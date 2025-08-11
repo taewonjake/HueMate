@@ -1,0 +1,15 @@
+.wrap{padding:32px 24px;display:grid;gap:28px;place-items:center;}
+.header{text-align:center;}
+.logo{font-weight:800;font-size:32px;letter-spacing:.2px}
+.dot{color:#a855f7;margin-right:6px}
+.subtitle{color:#6b7280;margin-top:8px}
+.grid{width:min(1100px,100%);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.07);display:grid;gap:8px;padding-bottom:16px;text-decoration:none;color:#111}
+.icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.45);display:grid;place-items:center;margin:18px;font-size:24px}
+.card h3{margin:0 18px;font-size:20px}
+.card p{margin:0 18px;color:#6b7280;min-height:40px}
+.link{margin:6px 18px 0;color:#6d28d9;font-weight:600}
+.gradPurple{background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
+.gradBlue{background:linear-gradient(135deg,#3b82f6 0%,#60a5fa 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
+.gradGreen{background:linear-gradient(135deg,#22c55e 0%,#86efac 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
+.footer{color:#9ca3af;margin-top:16px}
