@@ -1,0 +1,35 @@
+.wrap { display: grid; place-items: center; gap: 10px; padding: 8px 0; }
+
+.label {
+  margin: 0;
+  font-weight: 700;
+  color: #111827;
+}
+
+.circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  border: 0;
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.12),
+    inset 0 0 0 4px rgba(255,255,255,.35);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+.circle:hover { transform: scale(1.03); box-shadow: 0 20px 44px rgba(0,0,0,.16), inset 0 0 0 4px rgba(255,255,255,.35); }
+.circle:active { transform: scale(.98); }
+
+.hiddenInput { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+.hexPill {
+  min-width: 140px;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

@@ -1,89 +1,91 @@
 .multiInput {
-  padding: 16px;
+  padding: 18px;
   display: grid;
   gap: 16px;
 }
 
+.head {
+  text-align: center;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
 .colorRow {
   display: grid;
-  grid-template-columns: 44px minmax(120px, 1fr) auto;
+  grid-template-columns: 40px 1fr 40px;
   align-items: center;
   gap: 12px;
 }
 
-.colorPicker {
+.swatch {
   width: 40px;
   height: 40px;
-  padding: 0;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background: #fff;
-  cursor: pointer;
-}
-
-.colorPicker:focus {
-  outline: 2px solid #6366f1;
-  outline-offset: 2px;
-}
-
-.colorCode {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 14px;
-  color: #374151;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-/* 공통 버튼 토큰 */
-.btn {
-  border: none;
-  padding: 8px 12px;
   border-radius: 10px;
-  cursor: pointer;
+  border: 2px solid rgba(0,0,0,.05);
+}
+
+.hexInput {
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0 14px;
   font-size: 14px;
-  line-height: 1;
-  transition: transform .02s ease, opacity .15s ease;
+  outline: none;
+  background: #fff;
 }
 
-.btn:active {
-  transform: translateY(1px);
-}
-
-.addBtn {
-  composes: btn;
-  background: #f3f4f6;
-  color: #111827;
+.hexInput:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
 }
 
 .removeBtn {
-  composes: btn;
-  background: #fee2e2;
-  color: #991b1b;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  cursor: pointer;
 }
 
-.addFromImageBtn {
-  composes: btn;
-  background: #444cf7;
-  color: #fff;
+.removeBtn:hover {
+  background: #f3f4f6;
 }
 
-.addFromImageBtn:hover {
-  opacity: 0.92;
+.btnRow {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 6px;
+  flex-wrap: wrap;
+  align-items: stretch; /* 버튼 높이 통일 */
 }
 
-/* 모바일 최적화 */
-@media (max-width: 480px) {
-  .colorRow {
-    grid-template-columns: 40px 1fr auto;
-    gap: 10px;
-  }
-  .colorCode {
-    font-size: 13px;
-  }
+.addBtn,
+.analyzeButton,
+.imageBtn {
+  composes: btn from "../pages/Page.module.css";
+}
+
+.addBtn {
+  composes: btnGhost from "../pages/Page.module.css";
+}
+
+.analyzeButton {
+  composes: btnPrimary from "../pages/Page.module.css";
+}
+
+.imageBtn {
+  composes: btnOutline from "../pages/Page.module.css";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px; /* 다른 버튼과 동일 높이 */
+  padding: 0 16px;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+.imageBtnIcon {
+  margin-right: 6px;
 }

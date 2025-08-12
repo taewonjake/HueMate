@@ -1,15 +1,133 @@
-.wrap{padding:32px 24px;display:grid;gap:28px;place-items:center;}
-.header{text-align:center;}
-.logo{font-weight:800;font-size:32px;letter-spacing:.2px}
-.dot{color:#a855f7;margin-right:6px}
-.subtitle{color:#6b7280;margin-top:8px}
-.grid{width:min(1100px,100%);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.07);display:grid;gap:8px;padding-bottom:16px;text-decoration:none;color:#111}
-.icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.45);display:grid;place-items:center;margin:18px;font-size:24px}
-.card h3{margin:0 18px;font-size:20px}
-.card p{margin:0 18px;color:#6b7280;min-height:40px}
-.link{margin:6px 18px 0;color:#6d28d9;font-weight:600}
-.gradPurple{background:linear-gradient(135deg,#a855f7 0%,#ec4899 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
-.gradBlue{background:linear-gradient(135deg,#3b82f6 0%,#60a5fa 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
-.gradGreen{background:linear-gradient(135deg,#22c55e 0%,#86efac 50%,#fff 50%);background-size:100% 160px;background-repeat:no-repeat}
-.footer{color:#9ca3af;margin-top:16px}
+/* ===== Home.module.css (전체 교체본) ===== */
+
+/* 공통 토큰 */
+:root{
+  --brand-purple: #8b5cf6;
+  --brand-purple-600: #7c3aed;
+  --text-strong: #111827;
+  --text-muted: #6b7280;
+  --card-bg: #ffffff;
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.08);
+  --shadow-lg: 0 18px 36px rgba(0,0,0,.16);
+  --radius-lg: 16px;
+}
+
+/* 페이지 배경 (라이트 + 상단 보랏빛) */
+.wrap{
+  min-height: 100vh;
+  padding: 56px 20px 36px;
+  background:
+    radial-gradient(1200px 360px at 50% 0,
+      rgba(139, 92, 246, 0.14),
+      rgba(139, 92, 246, 0) 70%
+    ),
+    linear-gradient(180deg, #f3f5ff 0%, #ffffff 45%);
+}
+
+/* 헤더 */
+.header{
+  text-align: center;
+  margin-bottom: 22px;
+}
+.brand{
+  display:inline-flex; align-items:center; gap:10px; justify-content:center;
+}
+.mark{ font-size:20px; }
+.name{
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--brand-purple);
+  letter-spacing: .2px;
+}
+.slogan{
+  margin: 8px 0 0;
+  color: var(--text-muted);
+}
+
+/* 카드 그리드 */
+.grid{
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* 카드 */
+.card{
+  display: grid;
+  grid-template-rows: 140px auto;   /* 상단 커버 높이 */
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--text-strong);
+  transition: transform .12s ease, box-shadow .2s ease, color .2s ease;
+  will-change: transform, box-shadow, color;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 상단 커버(그라데이션 바) */
+.cover{
+  position: relative;
+  display: grid;          /* 중앙 정렬 */
+  place-items: center;    /* 가로·세로 중앙 */
+}
+.purple{
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+.blue{
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+.green{
+  background: linear-gradient(135deg, #22c55e 0%, #84cc16 100%);
+}
+
+/* 아이콘 배지(커버 중앙) */
+.icon{
+  position: static;               /* 중앙 배치용 */
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.25); /* 은은한 반투명 원 */
+  backdrop-filter: blur(2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  font-size: 24px;
+  margin: 0;
+}
+
+/* 본문 */
+.body{ padding: 24px 20px 18px; } /* 아이콘이 겹치지 않으니 상단 여백 축소 */
+.title{ margin: 0 0 6px; font-size: 18px; font-weight: 800; }
+.desc{ margin: 0 0 10px; color: var(--text-muted); }
+.cta{
+  color: var(--brand-purple);
+  font-weight: 700;
+  transition: color .2s ease;
+}
+
+/* Hover 시 텍스트 포인트 컬러 */
+.card:hover .title,
+.card:hover .cta{
+  color: var(--brand-purple);
+}
+
+/* 푸터 */
+.footer{
+  text-align: center;
+  margin-top: 26px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+/* 반응형 */
+@media (max-width: 400px){
+  .grid{ grid-template-columns: 1fr; }
+  .card{ grid-template-rows: 120px auto; }
+  .icon{ width: 50px; height: 50px; font-size: 22px; }
+  .body{ padding: 22px 16px 16px; }
+}

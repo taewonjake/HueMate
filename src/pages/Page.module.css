@@ -1,11 +1,54 @@
-.page{padding:20px;max-width:1080px;margin:0 auto}
-.topbar{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.back{text-decoration:none;color:#6b7280;font-size:18px}
-.titleRow{display:flex;align-items:center;gap:8px;color:#374151;font-weight:700}
-.titleIcon{width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
-.card{background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);padding:18px;margin-bottom:16px}
-.btnRow{display:flex;gap:8px;flex-wrap:wrap}
-.btn{border:none;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:600}
-.btnPrimary{background:linear-gradient(135deg,#a855f7,#ec4899);color:#fff}
-.btnBlue{background:linear-gradient(135deg,#60a5fa,#3b82f6);color:#fff}
-.btnGhost{background:#f3f4f6;color:#111827}
+/* 페이지 공통 */
+.page { padding: 20px; max-width: 1080px; margin: 0 auto; }
+.topbar { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.back { text-decoration: none; color: #6b7280; font-size: 18px; }
+.titleRow { display: flex; align-items: center; gap: 8px; color: #374151; font-weight: 700; }
+.titleIcon { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; }
+.card { background: #fff; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.06); padding: 18px; margin-bottom: 16px; }
+
+/* 버튼 행 — 가운데 정렬 */
+.btnRow {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;   /* ★ 가운데 정렬 핵심 */
+}
+
+/* Harmony 전용 배경 그라데이션 */
+.gradient {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 500px at -10% 0%, rgba(59,130,246,0.06), transparent 70%),
+    radial-gradient(900px 400px at 110% 30%, rgba(168,85,247,0.06), transparent 70%),
+    linear-gradient(#f8fafc, #f8fafc);
+}
+
+/* 공통 버튼: hover 시 살짝 커지고 그림자 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(2, 32, 71, 0.15);
+}
+
+.btnPrimary { background: #0ea5e9; color: #fff; }
+.btnPrimary:hover { background: #0284c7; }
+
+.btnOutline { background: #fff; color: #0ea5e9; border-color: #bae6fd; }
+.btnOutline:hover { background: #f0f9ff; border-color: #7dd3fc; }
+
+.btnGhost { background: #f3f4f6; color: #6b7280; }
+.btnGhost:hover { background: #e5e7eb; color: #374151; }

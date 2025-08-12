@@ -1,27 +1,41 @@
-// src/components/HarmonyChecker.jsx
-// 색 조합 조화성 평가 (입력 UI 제거, 부모에서 받은 colors만 분석)
-
 import React, { useEffect, useState } from "react";
 import HarmonyResultBox from "./HarmonyResultBox";
 import { analyzeHarmony } from "../utils/colorUtils";
 import styles from "./HarmonyChecker.module.css";
 
-const HarmonyChecker = ({ colors = [] }) => {
+const HarmonyChecker = ({ colors = [], trigger = 0 }) => {
   const [result, setResult] = useState(null);
+  const [lastColors, setLastColors] = useState([]);
 
+  // 색이 바뀌면 결과 숨김
   useEffect(() => {
-    if (Array.isArray(colors) && colors.length >= 2) {
-      setResult(analyzeHarmony(colors));
-    } else {
+    const hexList = Array.isArray(colors) ? colors.filter(Boolean) : [];
+    if (hexList.join(",") !== lastColors.join(",")) {
       setResult(null);
+      setLastColors(hexList);
     }
-  }, [colors]);
+  }, [colors, lastColors]);
+
+  // 버튼을 눌러 trigger가 증가했을 때만 계산
+  useEffect(() => {
+    if (trigger <= 0) {
+      setResult(null);
+      return;
+    }
+
+    const valid = Array.isArray(colors) && colors.filter(Boolean).length >= 2;
+    setResult(valid ? analyzeHarmony(colors) : null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger]);
 
   return (
     <div className={styles.harmonyChecker}>
-      {/* 입력 영역은 부모(Harmony.jsx)에서 렌더링합니다 */}
+      {!result && (
+        <p className={styles.help}>
+          색상을 입력한 뒤 <strong>조화도 분석</strong> 버튼을 누르면 결과가 표시됩니다.
+        </p>
+      )}
       {result && <HarmonyResultBox result={result} />}
-      {!result && <p className={styles.help}>최소 두 가지 색상을 선택하면 분석합니다.</p>}
     </div>
   );
 };

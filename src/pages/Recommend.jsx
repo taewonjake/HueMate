@@ -1,101 +1,62 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
 import page from "./Page.module.css";
 
+import ToneSelector from "../components/ToneSelector";
 import ImageUpload from "../components/ImageUpload";
 import ColorRecommendation from "../components/ColorRecommendation";
-import ColorInput from "../components/ColorInput";
-import ToneSelector from "../components/ToneSelector";
+import BaseColorPicker from "../components/BaseColorPicker";
 
 export default function Recommend() {
-  const [baseColor, setBaseColor] = useState("#6366f1");
-  const [toneType, setToneType] = useState("analogic");
-  const [refreshKey, setRefreshKey] = useState(0); // 0이면 아직 생성 안 함
+  const [baseColor, setBaseColor] = useState("#6366f1");     // 기본값
+  const [toneType, setToneType] = useState("toneOnTone");
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  // 수동 생성
-  const handleGenerate = useCallback(() => {
-    setRefreshKey((k) => k + 1);
-  }, []);
-
-  // 색상 입력/피커에서 변경: 값이 달라질 때만 반영 + 결과 초기화
-  const handleBaseColorChange = useCallback(
-    (v) => {
-      if (!v) return;
-      if (v.toLowerCase() === (baseColor || "").toLowerCase()) return; // 변화 없음
-      setBaseColor(v);
-      setRefreshKey(0); // 다시 버튼 누르게
-    },
-    [baseColor]
-  );
-
-  // 이미지 업로드에서 변경: 값이 달라질 때만 반영 + 자동 생성
-  const handleBaseColorFromImage = useCallback(
-    (v) => {
-      if (!v) return;
-      if (v.toLowerCase() === (baseColor || "").toLowerCase()) return; // 변화 없음
-      setBaseColor(v);
-      setRefreshKey((k) => k + 1); // 자동 생성
-    },
-    [baseColor]
-  );
-
-  // 톤 변경: 값이 달라질 때만 반영 + 자동 재생성
-  const handleToneChange = useCallback(
-    (v) => {
-      if (!v || v === toneType) return; // 변화 없음이면 무시 (무한 루프 방지)
-      setToneType(v);
-      setRefreshKey((k) => k + 1);
-    },
-    [toneType]
-  );
+  const handleGenerate = () => setRefreshKey(k => k + 1);
 
   return (
-    <main className={page.page}>
+    <div className={page.page}>
+      {/* 상단 */}
       <div className={page.topbar}>
-        <Link to="/" className={page.back}>←</Link>
+        <Link to="/" className={page.back} aria-label="뒤로가기">←</Link>
         <div className={page.titleRow}>
-          <div className={page.titleIcon} style={{ background: "#ede9fe" }}>🎨</div>
-          <h2>색상 추천</h2>
+          <div className={page.titleIcon} style={{ background: "#F1E7FF", color: "#7C3AED" }}>🎨</div>
+          <span>색상 추천</span>
         </div>
       </div>
 
+      {/* 선택 섹션 */}
       <section className={page.card}>
-        <h3>색상을 선택하세요</h3>
-        <div style={{ display: "grid", gap: 12, placeItems: "center", marginTop: 12 }}>
-          <div
-            style={{
-              width: 96,
-              height: 96,
-              borderRadius: "50%",
-              boxShadow: "0 10px 30px rgba(0,0,0,.12)",
-              background: baseColor,
-            }}
-          />
+        {/* 1) 큰 원 컬러 피커 - 이것만 남깁니다 */}
+        <BaseColorPicker color={baseColor} onChange={setBaseColor} />
 
-          {/* 색 바꾸면 결과 초기화 */}
-          <ColorInput baseColor={baseColor} setBaseColor={handleBaseColorChange} />
+        {/* 2) 톤 선택 */}
+        <ToneSelector toneType={toneType} setToneType={setToneType} />
 
-          {/* 탭 바꾸면 자동 재추천 (값이 같으면 아무 것도 안 함) */}
-          <ToneSelector toneType={toneType} setToneType={handleToneChange} />
+        {/* 3) 버튼들 */}
+        <div className={page.btnRow}>
+          {/* 이미지로 색 추가: 결과 텍스트/이름은 숨김 → UI 중복 제거 */}
+          <ImageUpload setBaseColor={setBaseColor} showName={false} />
 
-          <div className={page.btnRow}>
-            {/* 이미지로 색 바꾸면 자동 생성 (값이 같으면 무시) */}
-            <ImageUpload showName={false} setBaseColor={handleBaseColorFromImage} />
-            <button className={`${page.btn} ${page.btnPrimary}`} onClick={handleGenerate}>
-              추천 색상 생성
-            </button>
-          </div>
+          {/* 추천 색상 생성 (그라데이션 버튼) */}
+          <button
+            type="button"
+            onClick={handleGenerate}
+            className={`${page.btn} ${page.btnGradientPurple}`}
+          >
+            추천 색상 생성
+          </button>
         </div>
       </section>
 
+      {/* 결과 섹션 */}
       <section className={page.card}>
-        <h3>추천 색상</h3>
         <ColorRecommendation
           baseColor={baseColor}
           toneType={toneType}
           refreshKey={refreshKey}
         />
       </section>
-    </main>
+    </div>
   );
 }

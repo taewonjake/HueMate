@@ -1,27 +1,48 @@
-//분석 결과 카드
-
+// src/components/HarmonyResultBox.jsx
 import React from "react";
 import styles from "./HarmonyResultBox.module.css";
 
-const HarmonyResultBox = ({ result }) => {
-  const { score, message, tips } = result;
+const getScoreColor = (score) => {
+  if (score >= 80) return "#0ea5e9";
+  if (score >= 60) return "#22c55e";
+  if (score >= 40) return "#f59e0b";
+  return "#ef4444";
+};
 
-  const getScoreColor = (score) => {
-    if (score >= 80) return "#4CAF50"; // green
-    if (score >= 50) return "#FFC107"; // yellow
-    return "#F44336"; // red
-  };
+const HarmonyResultBox = ({ result }) => {
+  if (!result) return null;
+  const { score = 0, message = "", tips = "", colors = [] } = result;
 
   return (
     <div className={styles.resultBox}>
-      <h4>조화도 분석 결과</h4>
-      <p>
-        <strong style={{ color: getScoreColor(score), fontSize: "1.5rem" }}>
-          점수: {score}점
-        </strong>
-      </p>
-      <p className={styles.message}>{message}</p>
-      <p className={styles.tip}><em>{tips}</em></p>
+      <h4 className={styles.title}>분석 결과</h4>
+
+      {Array.isArray(colors) && colors.length >= 2 && (
+        <div className={styles.combo}>
+          {colors.slice(0, 2).map((c, i) => (
+            <div key={i} className={styles.comboSwatch} style={{ background: c }} />
+          ))}
+        </div>
+      )}
+
+      <div className={styles.scoreWrap}>
+        <div className={styles.scoreCircle}>
+          <span className={styles.scoreText}>{score}</span>
+        </div>
+        <div className={styles.scoreLabel}>조화도 점수</div>
+        <div className={styles.progress}>
+          <div
+            className={styles.progressBar}
+            style={{ width: `${Math.min(100, Math.max(0, score))}%`, background: getScoreColor(score) }}
+          />
+        </div>
+      </div>
+
+      <div className={styles.note}>
+        {message || "분석 결과 메시지가 여기에 표시됩니다."}
+      </div>
+
+      {tips && <p className={styles.tip}><em>{tips}</em></p>}
     </div>
   );
 };
