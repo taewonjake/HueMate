@@ -65,7 +65,7 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer}>
-        © 2024 HueMate. 당신의 색상 도우미
+        © 2025 HueMate. 당신의 색상 도우미
       </footer>
     </main>
   );

@@ -43,7 +43,7 @@ export default function RandomPalettes() {
       mode: MODES[rand(MODES.length)],
       base: randHex(),
     }));
-
+    //우선 빈카드로 교체
     setCards(targets.map((t) => makeEmptyCard(t.mode)));
 
     try {
@@ -71,11 +71,11 @@ export default function RandomPalettes() {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {//마운트시 자동 로드
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+//클립보드에 복사 기능
   const copyText = async (text) => {
     try {
       await navigator.clipboard.writeText(text);

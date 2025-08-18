@@ -2,12 +2,12 @@
 // - 입력: HEX 문자열 배열 ['#RRGGBB', ...] (최소 2개)
 // - 출력: { score: 0..100, message: string, tips: string, bestRelation?: string }
 
-export const analyzeHarmony = (colors) => {
+export const analyzeHarmony = (colors) => {//normalizeHex로 색상 문자열을 정규화 ex. "fff" → "#ffffff"
   const clean = (colors || []).filter(Boolean).map(normalizeHex).filter(Boolean);
   if (clean.length < 2) {
     return { score: 0, message: "두 가지 이상의 색을 선택하세요.", tips: "" };
   }
-
+  //모든 색상 쌍을 만들어(pairwise), HSL로 변환 후 scorePair로 각각 점수를 계산
   const pairs = pairwise(clean.map(hexToHSL));
   const pairScores = pairs.map(([a, b]) => scorePair(a, b));
   const raw = average(pairScores);
@@ -32,7 +32,7 @@ export const analyzeHarmony = (colors) => {
 
 /* ---------------- core scoring ---------------- */
 
-function scorePair(a, b) {
+function scorePair(a, b) {//두 색상 HSL 값의 차이를 계산
   const dH = hueDistance(a.h, b.h);      // 0..180
   const dS = Math.abs(a.s - b.s);        // 0..1
   const dL = Math.abs(a.l - b.l);        // 0..1
@@ -46,7 +46,7 @@ function scorePair(a, b) {
     { name: "단색", angle: 0, w: 0.6 },
   ];
 
-  // 가우시안 형태의 근접도
+  // 가우스 함수로 색상 차이가 각 관계 각도에 얼마나 가까운지 계산, ex.실제 차이가 178°라면 → 보색(180°) 관계에 높은 점수.
   const sigma = 18; // 허용폭(°)
   const closeness = (d, mu) => Math.exp(-Math.pow(d - mu, 2) / (2 * sigma * sigma));
 
@@ -64,7 +64,7 @@ function scorePair(a, b) {
   return pairScore;
 }
 
-function bestRelationForPairs(pairs) {
+function bestRelationForPairs(pairs) {//모든 색상 쌍에 대해 어떤 관계(보색, 삼색…)가 제일 가까운지 평가. 합산해서 가장 높은 관계를 bestRelation으로 반환.
   const agg = {};
   for (const [a,b] of pairs) {
     const dH = hueDistance(a.h, b.h);
@@ -94,7 +94,7 @@ function bestRelationForPairs(pairs) {
 function average(arr){ return arr.reduce((a,b)=>a+b,0) / arr.length; }
 function clamp(v, min, max){ return Math.min(max, Math.max(min, v)); }
 
-function pairwise(arr){
+function pairwise(arr){//배열의 모든 2쌍을 반환.
   const out = [];
   for (let i=0;i<arr.length;i++){
     for (let j=i+1;j<arr.length;j++){
@@ -104,7 +104,7 @@ function pairwise(arr){
   return out;
 }
 
-function normalizeHex(hex){
+function normalizeHex(hex){//HEX 코드 표준화 (#RGB → #RRGGBB).
   if (typeof hex !== "string") return null;
   let s = hex.trim();
   if (!s) return null;
@@ -140,7 +140,7 @@ function hexToHSL(hex){
   return { h, s, l };
 }
 
-function hueDistance(h1, h2){
+function hueDistance(h1, h2){//색상 차이를 0~180° 범위로 계산.
   const diff = Math.abs(h1 - h2) % 360;
   return diff > 180 ? 360 - diff : diff; // 0..180
 }

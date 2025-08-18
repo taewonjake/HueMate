@@ -27,7 +27,7 @@ export default function Recommend() {
 
       {/* 선택 섹션 */}
       <section className={page.card}>
-        {/* 1) 큰 원 컬러 피커 - 이것만 남깁니다 */}
+        {/* 1) 큰 원 컬러 피커 */}
         <BaseColorPicker color={baseColor} onChange={setBaseColor} />
 
         {/* 2) 톤 선택 */}

@@ -43,7 +43,9 @@
   transform: translateY(-1px) scale(1.02);
   box-shadow: 0 10px 28px rgba(2, 32, 71, 0.15);
 }
-
+.btnGradientPurple{
+  background: #0ea5e9; color: white;
+}
 .btnPrimary { background: #0ea5e9; color: #fff; }
 .btnPrimary:hover { background: #0284c7; }
 

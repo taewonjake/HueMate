@@ -16,7 +16,7 @@ const HarmonyChecker = ({ colors = [], trigger = 0 }) => {
     }
   }, [colors, lastColors]);
 
-  // 버튼을 눌러 trigger가 증가했을 때만 계산
+  // 버튼을 눌러 trigger가 증가했을 때만 계산,버튼을 눌렀을 때만 결과창이 나옴
   useEffect(() => {
     if (trigger <= 0) {
       setResult(null);

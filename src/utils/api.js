@@ -1,14 +1,13 @@
-// src/utils/api.js
-const MODE_MAP = {
+const MODE_MAP = {//tomeselector 컴포넌트와 파라미터 연결
   analogic: "analogic",
   monochrome: "monochrome",
   complement: "complement",
 };
 
-const normalizeHex = (hex) =>
-  (hex || "").toString().trim().replace(/^#/, "").toLowerCase();
+const normalizeHex = (hex) =>//입력된 색상 값 # 제거, 소문자로 변환, 안전하게 처리하기 위함
+  (hex || "").toString().trim().replace(/^#/, "").toLowerCase(); 
 
-export async function fetchColorScheme(baseHex, toneType) {
+export async function fetchColorScheme(baseHex, toneType) {//색상 조합 api 호출
   const hex = normalizeHex(baseHex);
   const mode = MODE_MAP[toneType] || "analogic";
 
@@ -17,7 +16,7 @@ export async function fetchColorScheme(baseHex, toneType) {
   )}&mode=${encodeURIComponent(mode)}&count=6`;
 
   try {
-    const res = await fetch(url, { mode: "cors", cache: "no-store" });
+    const res = await fetch(url, { mode: "cors", cache: "no-store" });//api 응답에서 배열 꺼내고 hex코드만 추출
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
@@ -25,7 +24,7 @@ export async function fetchColorScheme(baseHex, toneType) {
       data?.colors?.map((c) => c?.hex?.value?.toLowerCase()).filter(Boolean) ||
       [];
 
-    // API가 비어 있으면 폴백
+    // API가 비어 있으면 폴백, 직접 만든 fallbackScheme 함수로 대체 팔레트 생성
     return colors.length ? colors : fallbackScheme(hex, mode);
   } catch (err) {
     console.error("fetchColorScheme failed:", err);
@@ -33,7 +32,7 @@ export async function fetchColorScheme(baseHex, toneType) {
   }
 }
 
-export async function fetchColorName(baseHex) {
+export async function fetchColorName(baseHex) {//색상 이름 api 호출
   const hex = normalizeHex(baseHex);
   const url = `https://www.thecolorapi.com/id?hex=${encodeURIComponent(hex)}`;
 
@@ -44,7 +43,7 @@ export async function fetchColorName(baseHex) {
     return data?.name?.value || "";
   } catch (err) {
     console.error("fetchColorName failed:", err);
-    return ""; // 이름은 실패해도 필수 아님
+    return ""; // 이름은 실패해도 필수 아님, 실패 시 빈문자열 반환
   }
 }
 
@@ -54,12 +53,12 @@ function fallbackScheme(hex, mode) {
   const n = 6;
   const arr = [];
 
-  if (mode === "monochrome") {
+  if (mode === "monochrome") {//톤인톤
     for (let i = 0; i < n; i++) {
       const li = clamp(l + (i - 2) * 8, 8, 92);
       arr.push(hslToHex(h, s, li));
     }
-  } else if (mode === "complement") {
+  } else if (mode === "complement") {//보색
     const h2 = (h + 180) % 360;
     for (let i = 0; i < n; i++) {
       const hh = i % 2 === 0 ? h : h2;
@@ -79,7 +78,7 @@ function fallbackScheme(hex, mode) {
   return uniqHex(arr);
 }
 
-function hexToHsl(hex) {
+function hexToHsl(hex) {//HEX → HSL 변환. (색조/채도/명도 계산)
   const m = normalizeHex(hex).match(/^([0-9a-f]{6})$/i);
   const n = m ? parseInt(m[1], 16) : 0x666666;
   let r = ((n >> 16) & 255) / 255,
@@ -107,7 +106,7 @@ function hexToHsl(hex) {
   }
   return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
 }
-function hslToHex(h, s, l) {
+function hslToHex(h, s, l) {//HSL → HEX 변환.
   s /= 100;
   l /= 100;
   const a = s * Math.min(l, 1 - l);

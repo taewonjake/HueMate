@@ -1,15 +1,14 @@
-// src/components/HarmonyResultBox.jsx
 import React from "react";
 import styles from "./HarmonyResultBox.module.css";
 
-const getScoreColor = (score) => {
+const getScoreColor = (score) => {//점수의 색깔 지정
   if (score >= 80) return "#0ea5e9";
   if (score >= 60) return "#22c55e";
   if (score >= 40) return "#f59e0b";
   return "#ef4444";
 };
 
-const HarmonyResultBox = ({ result }) => {
+const HarmonyResultBox = ({ result }) => {//결과들 출력
   if (!result) return null;
   const { score = 0, message = "", tips = "", colors = [] } = result;
 

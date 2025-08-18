@@ -1,3 +1,4 @@
+//색상 조화도 평가에서 색상 입력
 import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
 import styles from "./ColorMultiInput.module.css";
@@ -6,7 +7,7 @@ const newId = () => (crypto?.randomUUID ? crypto.randomUUID() : `${Date.now()}-$
 const norm = (h) =>
   typeof h === "string" ? h.trim().toLowerCase().replace(/\s+/g, "") : h;
 
-/** [{id, hex}] 리스트를 받아 UI/조작을 담당 */
+//{id, hex} 리스트를 받아 UI/조작을 담당
 const ColorMultiInput = ({ colorList, setColorList, onAnalyze }) => {
   const [resetSignal, setResetSignal] = useState(0); // ImageUpload 프리뷰 초기화 트리거
 

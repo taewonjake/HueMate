@@ -8,19 +8,20 @@ const ColorInput = ({ baseColor, setBaseColor }) => {
 
   useEffect(() => {
     async function getColorName() {
-      if (baseColor) {
-        const name = await fetchColorName(baseColor);
+      if (baseColor) { //basecolor가 비어있지 않을 경우에 실행
+        const name = await fetchColorName(baseColor);//api 호출
         setColorName(name);
       }
     }
     getColorName();
-  }, [baseColor]);
+  }, [baseColor]);//basecolor가 바뀔 때마다 색 이름을 비동기로 가져옴
 
   return (
     <div className={styles.Colorinput}>
       <label htmlFor="colorPicker" className={styles.colorLabel}>
         색상을 선택하세요
       </label>
+       {/* 컬러 피커: 선택 시 setBaseColor 호출로 부모 상태 변경 */}
       <input
         type="color"
         id="colorPicker"
@@ -28,6 +29,7 @@ const ColorInput = ({ baseColor, setBaseColor }) => {
         onChange={(e) => setBaseColor(e.target.value)}
         className={styles.colorPicker}
       />
+      {/* 선택한 HEX 코드와 (있으면) 색 이름 같이 표시 */}
       <div className={styles.colorCode}>
         <span>{baseColor}</span>
         <span style={{ marginLeft: "0.5rem" }}>{colorName && `(${colorName})`}</span>

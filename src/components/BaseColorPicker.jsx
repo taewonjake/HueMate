@@ -1,3 +1,4 @@
+//색상 추천 메뉴에서 색상 선택
 import { useRef } from "react";
 import styles from "./BaseColorPicker.module.css";
 

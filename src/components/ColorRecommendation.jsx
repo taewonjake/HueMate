@@ -10,13 +10,13 @@ const ColorRecommendation = ({ baseColor, toneType, refreshKey }) => {
   const [colorName, setColorName] = useState("");
   const [lastMode, setLastMode] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => { /*baseColor가 바뀌면 기존 추천 색과 이름을 모두 지움. 이렇게 해야 이전 색 추천이 잠깐이라도 남아있지 않음.*/
     setRecommendedColors([]);
     setColorName("");
     setLastMode(null);
   }, [baseColor]);
 
-  useEffect(() => {
+  useEffect(() => { //api 호출
     if (!baseColor || !toneType) return;
     if (!refreshKey) return;
 

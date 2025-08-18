@@ -62,6 +62,12 @@
   align-items: stretch; /* 버튼 높이 통일 */
 }
 
+.addBtn{
+  color: #0ea5e9; 
+  background: white;
+  border-color: #bae6fd;
+}
+
 .addBtn,
 .analyzeButton,
 .imageBtn {
