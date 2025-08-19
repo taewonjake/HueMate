@@ -132,9 +132,6 @@ npm install react react-dom react-router-dom color-thief-browser
 
 ## 6. Flowchart
 
-> GitHub에서 바로 보려면 아래 Mermaid 블록을 사용하세요.
-
-```mermaid
 flowchart LR
   A[Home] --> B[색상 추천 /recommend]
   A --> C[조화도 분석 /harmony]
