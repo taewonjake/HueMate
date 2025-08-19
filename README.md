@@ -129,38 +129,36 @@ npm install react react-dom react-router-dom color-thief-browser
 
 ## 6. Flowchart
 
-> GitHub에서 바로 보려면 아래 Mermaid 블록을 사용하세요.
-
 ```mermaid
 flowchart LR
-  A[Home] --> B[색상 추천 /recommend]
-  A --> C[조화도 분석 /harmony]
-  A --> D[랜덤 팔레트 /random]
+  A["Home"] --> B["색상 추천 (/recommend)"]
+  A --> C["조화도 분석 (/harmony)"]
+  A --> D["랜덤 팔레트 (/random)"]
 
   %% Recommend
   subgraph Recommend
-    B1[색 선택 · BaseColorPicker / ImageUpload(useDominantColor)]
-    B2[톤 선택 · analogic / monochrome / complement]
-    B3[팔레트 생성 · fetchColorScheme + 폴백]
-    B4[색상명 조회 · fetchColorName]
-    B5[Styling Tip + Pinterest 열기]
+    B1["색 선택: BaseColorPicker 또는 ImageUpload(useDominantColor)"]
+    B2["톤 선택: analogic / monochrome / complement"]
+    B3["팔레트 생성: fetchColorScheme (API) 또는 폴백"]
+    B4["색상명 조회: fetchColorName"]
+    B5["Styling Tip + Pinterest 열기"]
     B --> B1 --> B2 --> B3 --> B4 --> B5
   end
 
   %% Harmony
   subgraph Harmony
-    C1[다중 색 입력/삭제 · ColorMultiInput]
-    C2[조화도 분석 클릭]
-    C3[analyzeHarmony · 조화각 근접도 + 채도/명도 페널티]
-    C4[점수/메시지/팁 출력]
+    C1["다중 색 입력/삭제: ColorMultiInput"]
+    C2["조화도 분석 클릭"]
+    C3["analyzeHarmony: 조화각 근접도 + 채도/명도 페널티"]
+    C4["점수/메시지/팁 출력"]
     C --> C1 --> C2 --> C3 --> C4
   end
 
   %% Random Palette
   subgraph Random
-    D1[모드 카드 5종 · Analogic/Monochrome/Complement/Triad/Quad]
-    D2[TheColorAPI 호출 or 폴백]
-    D3[컬러 복사/팔레트 복사 · 토스트]
+    D1["모드 카드 5종: Analogic / Monochrome / Complement / Triad / Quad"]
+    D2["TheColorAPI 호출 또는 폴백"]
+    D3["컬러 복사/팔레트 복사 + 토스트"]
     D --> D1 --> D2 --> D3
   end
 ```
