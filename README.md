@@ -160,10 +160,60 @@ flowchart LR
     D --> D1 --> D2 --> D3
   end
 ```
+---
+## 7. UI
+
+- **PC**
+  - <img width="1891" height="902" alt="Image" src="https://github.com/user-attachments/assets/7399ee8d-8ef8-44a8-afef-3920f5ae42b5" />
+
+  - <img width="1910" height="900" alt="Image" src="https://github.com/user-attachments/assets/6a3a7f95-af40-4bec-969a-41b06939ded6" />
+
+  - <img width="1387" height="767" alt="Image" src="https://github.com/user-attachments/assets/9e250045-4164-4998-bdd4-6daacf2c73ba" />
+
+  - <img width="1891" height="898" alt="Image" src="https://github.com/user-attachments/assets/ed32d624-a9fe-4617-a3d8-1e8b6eb0dc42" />
+
+- **모바일**
+   - ![Image](https://github.com/user-attachments/assets/2452eabb-d5f9-494e-a164-94de27a16512)
+
+   - ![Image](https://github.com/user-attachments/assets/46fe1bc4-a13e-4ed3-8b14-e0fe32b6a748)
+
+   - ![Image](https://github.com/user-attachments/assets/d12ea56c-5a3f-4d81-a9f1-9ed9c2f4589e)
+
+   - ![Image](https://github.com/user-attachments/assets/4dfec413-b0fc-40b0-a60a-0ad7dd1c77b7)
+
+  
+---
+## 8. 기능
+
+- **랜딩 페이지**
+  - ![Image](https://github.com/user-attachments/assets/590ae747-ae95-4cc0-803b-8f806e449f21)
+
+- **추천 색상 생성, 원하는 톤 색상 선택**
+  - ![Image](https://github.com/user-attachments/assets/4504031f-e048-4cc5-9c23-d2d09c62562e)
+
+- **추천 색상 코디 제안**
+  - ![Image](https://github.com/user-attachments/assets/eddca399-1121-446c-bfbb-256ba9a530ea)
+
+- **원하는 색상 추가**
+  - ![Image](https://github.com/user-attachments/assets/74eb88d3-4caf-49b9-bc5b-7689b56730ea)
+
+- **색상 조화도 분석**
+  - ![Image](https://github.com/user-attachments/assets/99665355-cdec-4367-9f9f-76e9bfeb22b1)
+
+- **새로고침 시 새로운 조합 생성**
+  - ![Image](https://github.com/user-attachments/assets/48b45186-9b8f-4643-a2f1-708f7c7823cc)
+
+- **클립보드로 색상 조합 복사**
+  - ![Image](https://github.com/user-attachments/assets/d43a6592-99c1-40d0-b5da-87532af997b9)
+
+- **이미지로 색상 추가**
+  - ![Image](https://github.com/user-attachments/assets/71cf76ab-a820-4fb2-9361-7190a8b7798c)
+
+  - ![Image](https://github.com/user-attachments/assets/29e0491e-96b4-4892-93fe-257fd962f8a0)
 
 ---
 
-## 7. 향후 개선 방향
+## 9. 향후 개선 방향
 
 - 추천 결과에 **명명·톤 정보 라벨** 표시(HEX 외 컬러 네임/톤)
 - 추천/조화도 결과의 **퍼머링크 공유** 및 **저장(즐겨찾기)**
@@ -172,7 +222,7 @@ flowchart LR
 
 ---
 
-## 8. 참고
+## 10. 참고
 
 - `utils/api.js`  
   - `fetchColorScheme`: TheColorAPI 사용, 실패 시 **HSL 폴백**으로 일관된 결과 보장  
