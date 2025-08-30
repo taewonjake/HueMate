@@ -164,8 +164,7 @@ flowchart LR
 ## 7. UI
 
 - **PC**
-  - 
-  <img width="1891" height="902" alt="Image" src="https://github.com/user-attachments/assets/7399ee8d-8ef8-44a8-afef-3920f5ae42b5" />
+  - <img width="1891" height="902" alt="Image" src="https://github.com/user-attachments/assets/7399ee8d-8ef8-44a8-afef-3920f5ae42b5" />
 
   - <img width="1910" height="900" alt="Image" src="https://github.com/user-attachments/assets/6a3a7f95-af40-4bec-969a-41b06939ded6" />
 
